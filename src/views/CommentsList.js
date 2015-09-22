@@ -1,9 +1,14 @@
 import React       from 'react';
 import CommentsItem from './CommentsItem';
+import { connect } from 'react-redux';
 
+const mapStateToProps = (state) => ({
+  comments : state.comments
+});
 export class CommentsList extends React.Component {
   static propTypes = {
     dispatch : React.PropTypes.func,
+    comments: React.PropTypes.array
   }
 
   constructor () {
@@ -14,6 +19,10 @@ export class CommentsList extends React.Component {
     return {};
   }
 
+  hasEntries () {
+    return typeof this.props.comments === 'array' && this.props.comments.length > 0;
+  }
+
   renderComments () {
     return this.props.comments.map(function renderCommentsItem(item) {
       return (
@@ -22,14 +31,14 @@ export class CommentsList extends React.Component {
     });
   }
 
+
   render () {
-    console.log(this.props);
     return (
       <div className='container text-center'>
-        {this.props.comments.length > 0 ? this.renderComments : 'Empty list'}
+        {this.hasEntries() ? this.renderComments : 'Empty list'}
       </div>
     );
   }
 }
 
-export default CommentsList;
+export default connect(mapStateToProps)(CommentsList);

@@ -17,9 +17,11 @@ export class CommentsItem extends React.Component {
   render () {
     return (
       <div className='container text-center'>
-        <div>{this.props.comment.message}</div>
-        <div>{this.props.comment.name}</div>
+        <div>{this.props.comment.content}</div>
+        <div>{this.props.comment.username}</div>
         <div>{this.props.comment.email}</div>
+        <div>{this.props.comment.link}</div>
+        <div>{this.props.comment.creationDate}</div>
       </div>
     );
   }

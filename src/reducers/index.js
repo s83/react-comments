@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import hello from './hello';
+import comments from './comments';
 
 export default combineReducers({
-  hello
+  comments
 });
