@@ -35,3 +35,22 @@ export function createDevToolsWindow (store) {
       , win.document.body);
   }, 10);
 }
+
+export function validateComment(data) {
+  const errors = {};
+  if (!data.username) {
+    errors.username = 'Required';
+  }
+  if (!data.email) {
+    errors.email = 'Must be an email';
+  }
+  if (!data.link) {
+    errors.phone = 'Must a valid url';
+  }
+  if (!data.content) {
+    errors.content = 'Required';
+  } else if (data.content && data.content.length > 255) {
+    errors.content = 'Must be fewer than 255 characters';
+  }
+  return errors;
+}

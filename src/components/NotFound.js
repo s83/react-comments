@@ -1,4 +1,4 @@
-import React       from 'react';
+import React from 'react';
 
 export class Welcome extends React.Component {
   static propTypes = {
@@ -12,7 +12,8 @@ export class Welcome extends React.Component {
   render () {
     return (
       <div className='container text-center'>
-        <h1>Welcome</h1>
+        <h1>Not found</h1>
+        <p>Sorry, that page does not exist</p>
       </div>
     );
   }

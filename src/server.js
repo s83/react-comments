@@ -2,8 +2,8 @@ import routes          from 'routes';
 import { match }       from 'react-router';
 import createLocation  from 'history/lib/createLocation';
 
-export Root           from 'containers/Root';
-export configureStore from '../store/configureStore';
+// export Root           from 'containers/Root';
+// export configureStore from 'store/configureStore';
 
 export function route (url) {
   const location = createLocation(url);

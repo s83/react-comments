@@ -3,14 +3,26 @@ import storage from 'redux-storage';
 import createEngine from 'redux-storage/engines/localStorage';
 import { devTools } from 'redux-devtools';
 import rootReducer from 'reducers';
+import { BLUR, FOCUS } from 'redux-form';
 
 const reducer = storage.reducer(rootReducer);
-const engine = storage.decorators.immutablejs(createEngine('my-save-key'), [
+const eventBlacklist = [ BLUR, FOCUS ];
+
+let engine = createEngine('redux-storage');
+
+// immutablejs decorator
+engine = storage.decorators.immutablejs(createEngine('redux-storage'), [
   ['immutablejs-reducer'], [
     'plain-object-reducer', 'with-immutablejs-key'
   ]
 ]);
-const middleware = storage.createMiddleware(engine);
+
+// filter decorator
+engine = storage.decorators.filter(engine, [
+    ['comments']
+]);
+
+const middleware = storage.createMiddleware(engine, eventBlacklist);
 
 let createStoreWithMiddleware;
 
