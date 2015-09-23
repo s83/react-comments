@@ -1,15 +1,15 @@
-// import { compose, createStore } from 'redux';
-import { compose, createStore, applyMiddleware, combineReducers } from 'redux';
+import { compose, createStore, applyMiddleware } from 'redux';
 import storage from 'redux-storage';
 import createEngine from 'redux-storage/engines/localStorage';
 import { devTools } from 'redux-devtools';
 import rootReducer from 'reducers';
 
 const reducer = storage.reducer(rootReducer);
-const engine =  storage.decorators.immutablejs(createEngine('my-save-key'), [
-                ['immutablejs-reducer'],
-                ['plain-object-reducer', 'with-immutablejs-key']
-              ]);
+const engine = storage.decorators.immutablejs(createEngine('my-save-key'), [
+  ['immutablejs-reducer'], [
+    'plain-object-reducer', 'with-immutablejs-key'
+  ]
+]);
 const middleware = storage.createMiddleware(engine);
 
 let createStoreWithMiddleware;
@@ -25,7 +25,6 @@ if (__DEBUG__) {
 
 
 export default function configureStore (initialState) {
-  console.log();
   const store = createStoreWithMiddleware(reducer, initialState);
   const load = storage.createLoader(engine);
   load(store)

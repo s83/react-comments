@@ -1,13 +1,12 @@
 import { Route }   from 'react-router';
 import React       from 'react';
-import CoreLayout  from 'layouts/CoreLayout';
-import Welcome    from 'views/Welcome';
-import CommentsItemForm    from 'views/CommentsItemForm';
-import CommentsList    from 'views/CommentsList';
-
+import App  from 'containers/App';
+import Welcome from 'components/Welcome';
+import CommentsList from 'components/CommentsList';
+import CommentsItemForm from 'components/CommentsItemForm';
 
 export default (
-  <Route component={CoreLayout}>
+  <Route component={App}>
     <Route name='home' path='/' component={Welcome} />
     <Route name='list' path='/list' component={CommentsList} />
     <Route name='create' path='/create' component={CommentsItemForm} />

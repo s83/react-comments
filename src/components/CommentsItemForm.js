@@ -2,7 +2,8 @@ import React       from 'react';
 
 export class CommentsItemForm extends React.Component {
   static propTypes = {
-    dispatch : React.PropTypes.func
+    dispatch : React.PropTypes.func,
+    createComment: React.PropTypes.func
   }
 
   constructor () {
@@ -10,13 +11,19 @@ export class CommentsItemForm extends React.Component {
   }
 
   handleSubmit = () => {
-    let values = {};
+    // let values = {};
     // let node = this.refs['todo-input'].getDOMNode();
-    var Object.keys(this.refs).forEach( item => {
-      values[item] = this.refs[item].getDOMNode().value;
-    });
+    // var Object.keys(this.refs).forEach( item => {
+    //   values[item] = this.refs[item].getDOMNode().value;
+    // });
+    const opts = {
+      'username': 'test',
+      'email': 'test',
+      'link': 'test',
+      'content': 'test'
+    };
 
-    this.props.createComment(values);
+    this.props.createComment(opts);
   }
 
   render () {
