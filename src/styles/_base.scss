@@ -1,1 +1,29 @@
-// Settings go here
+// Settings go herew
+$grey: #888;
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
+}
+
+.comment-grey {
+  color: $grey;
+}
+
+.comment-title {
+  margin-top: 0;
+}
+
+.comment-middle-align {
+  vertical-align: middle;
+}
+
+.comment-gravatar {
+  @include border-radius(20%);
+}
+
+.comment-date {
+  @extend .comment-grey;
+}
