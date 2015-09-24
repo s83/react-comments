@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Navbar, CollapsibleNav, Nav, NavItem, Glyphicon } from 'react-bootstrap';
+import { PATH_COMMENT_NEW, PATH_COMMENT_LIST } from 'constants';
 
 @connect(state => ({
   dispatch: state
@@ -14,16 +15,16 @@ export class Header extends React.Component {
   getMenus() {
     let output;
     switch (this.props.location.pathname) {
-    case '/write':
+    case PATH_COMMENT_NEW:
       output = (
-          <NavItem eventKey={1} href="/">
+          <NavItem eventKey={1} href={PATH_COMMENT_LIST}>
           <Glyphicon glyph="glyphicon glyphicon-chevron-left"/> Go Back
           </NavItem>
         );
       break;
     default:
       output = (
-        <NavItem eventKey={1} href="/write">
+        <NavItem eventKey={1} href={PATH_COMMENT_NEW}>
           <Glyphicon glyph="glyphicon glyphicon-pencil"/> New comment
         </NavItem>
       );

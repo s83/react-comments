@@ -1,6 +1,10 @@
 import React       from 'react';
 import CommentsItem from './CommentsItem';
 import { connect } from 'react-redux';
+import { ListGroup, Button } from 'react-bootstrap';
+import { PATH_COMMENT_NEW } from 'constants';
+
+console.log(PATH_COMMENT_NEW);
 
 const mapStateToProps = (state) => ({
   comments : state.comments
@@ -20,18 +24,35 @@ export class CommentsList extends React.Component {
   }
 
   renderComments () {
-    return this.props.comments.map(function renderCommentsItem(item) {
-      return (
-        <CommentsItem {...item}/>
-      );
-    });
+    const ListGroupItems = this.props.comments.map((item, i) => (
+      <CommentsItem key={i} {...item}/>
+    ));
+
+    return (
+      <ListGroup>
+        {ListGroupItems}
+      </ListGroup>
+    );
   }
 
+  renderEmpty () {
+    return (
+      <div className="text-center">
+        <h1>There are no comments yet!</h1>
+        <p>why not be the first?</p>
+        <p style={{ marginTop: 30}}>
+          <Button bsStyle="info" bsSize="large" href={PATH_COMMENT_NEW}>
+            Start here
+          </Button>
+        </p>
+      </div>
+    );
+  }
 
   render () {
     return (
-      <div className='container text-center'>
-        {this.hasEntries() ? this.renderComments() : 'Empty list'}
+      <div className='container'>
+        {this.hasEntries() ? this.renderComments() : this.renderEmpty()}
       </div>
     );
   }
