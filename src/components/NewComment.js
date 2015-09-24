@@ -30,7 +30,8 @@ export class newComment extends React.Component {
 
   render () {
     return (
-      <div className='container text-center'>
+      <div className='container'>
+        <h1>New comment</h1>
         <CommentForm onSubmit={this.handleSubmit.bind(this)}/>
       </div>
     );
