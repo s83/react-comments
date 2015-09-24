@@ -27,3 +27,7 @@ $grey: #888;
 .comment-date {
   @extend .comment-grey;
 }
+
+.navbar-collapse li{
+  text-align: right;
+}
