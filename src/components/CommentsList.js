@@ -1,8 +1,9 @@
 import React       from 'react';
 import CommentsItem from './CommentsItem';
 import { connect } from 'react-redux';
-import { ListGroup, Button } from 'react-bootstrap';
+import { ListGroup, Button, Glyphicon} from 'react-bootstrap';
 import { PATH_COMMENT_NEW } from 'constants';
+import Spaces from 'components/Spaces';
 
 console.log(PATH_COMMENT_NEW);
 
@@ -29,9 +30,18 @@ export class CommentsList extends React.Component {
     ));
 
     return (
-      <ListGroup>
+      <div>
+      <h1>
+        Discussions
+        <Spaces/>
+        <Button bsStyle="success" className="pull-right" href={PATH_COMMENT_NEW}>
+          <Glyphicon glyph="glyphicon glyphicon-plus"/>
+        </Button>
+      </h1>
+      <ListGroup className="box-shadow">
         {ListGroupItems}
       </ListGroup>
+      </div>
     );
   }
 
@@ -41,8 +51,10 @@ export class CommentsList extends React.Component {
         <h1>There are no comments yet!</h1>
         <p>why not be the first?</p>
         <p style={{ marginTop: 30}}>
-          <Button bsStyle="info" bsSize="large" href={PATH_COMMENT_NEW}>
-            Start here
+          <Button bsStyle="success" bsSize="large" href={PATH_COMMENT_NEW}>
+            Show some
+            <Spaces/>
+            <Glyphicon glyph="glyphicon glyphicon-heart"/>
           </Button>
         </p>
       </div>
