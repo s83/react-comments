@@ -58,8 +58,8 @@ export class CommentsItemForm extends React.Component {
             <Input
               type="textarea"
               label="Message *"
-              bsStyle={this.hasError(link) && 'error'} {...content}/>
-            { this.hasError(content) && this.renderError(content) }
+              bsStyle={this.hasError(content) && 'error'} {...content}/>
+              { this.hasError(content) && this.renderError(content) }
             <Input
               type="text"
               label="Site"

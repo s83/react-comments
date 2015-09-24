@@ -1,5 +1,6 @@
 import React from 'react';
 import { DevTools, DebugPanel, LogMonitor } from 'redux-devtools/lib/react';
+import Validator from 'validator';
 
 export function createConstants (...constants) {
   return constants.reduce((acc, constant) => {
@@ -39,18 +40,20 @@ export function createDevToolsWindow (store) {
 export function validateComment(data) {
   const errors = {};
   if (!data.username) {
-    errors.username = 'Required';
+    errors.username = 'Your name is required';
   }
-  if (!data.email) {
-    errors.email = 'Must be an email';
+  if (!data.email ) {
+    errors.email = 'Your e-mail is required';
+  }else if (!Validator.isEmail(data.email)) {
+    errors.email = 'Please enter a valid e-mail address';
   }
-  if (!data.link) {
-    errors.phone = 'Must a valid url';
+  if (data.link && !Validator.isFQDN(data.link)) {
+    errors.link = 'Please enter a valid url';
   }
   if (!data.content) {
-    errors.content = 'Required';
-  } else if (data.content && data.content.length > 255) {
-    errors.content = 'Must be fewer than 255 characters';
+    errors.content = 'Please enter your message';
+  } else if (data.content && data.content.length > 1024) {
+    errors.content = 'Must be fewer than 1024 characters';
   }
   return errors;
 }
