@@ -5,6 +5,7 @@ const initialState = [];
 export default function comments(state = initialState, action) {
   switch (action.type) {
   case ADD_COMMENT:
+    action.comment.date = Date.now();
     return [...state, action.comment];
   default:
     return state;
