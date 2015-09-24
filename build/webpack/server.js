@@ -38,6 +38,10 @@ const webpackConfig = {
     ],
     loaders : [
       {
+        test: /\.css$/,
+        loader: 'style-loader!css-loader'
+      },
+      {
         test    : /\.(js|jsx)$/,
         include :  paths.project(config.get('dir_src')),
         loaders : ['babel?optional[]=runtime&stage=0']
@@ -48,7 +52,12 @@ const webpackConfig = {
           'css/locals?module&localIdentName=[name]__[local]___[hash:base64:5]',
           'sass-loader?includePaths[]=' + paths.src('styles')
         ]
-      }
+      },
+      // loads bootstrap's css.
+      { test: /\.woff2?(\?v=\d+\.\d+\.\d+)?$/,   loader: 'url?limit=10000&mimetype=application/font-woff' },
+      { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,    loader: 'url?limit=10000&mimetype=application/octet-stream' },
+      { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,    loader: 'file' },
+      { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,    loader: 'url?limit=10000&mimetype=image/svg+xml' }
     ]
   },
   eslint : {
