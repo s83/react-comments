@@ -15,18 +15,14 @@ export class CommentsList extends React.Component {
     super();
   }
 
-  getInitialState () {
-    return {};
-  }
-
   hasEntries () {
-    return typeof this.props.comments === 'array' && this.props.comments.length > 0;
+    return this.props.comments.length > 0;
   }
 
   renderComments () {
     return this.props.comments.map(function renderCommentsItem(item) {
       return (
-        <CommentsItem data={item}/>
+        <CommentsItem {...item}/>
       );
     });
   }
@@ -35,7 +31,7 @@ export class CommentsList extends React.Component {
   render () {
     return (
       <div className='container text-center'>
-        {this.hasEntries() ? this.renderComments : 'Empty list'}
+        {this.hasEntries() ? this.renderComments() : 'Empty list'}
       </div>
     );
   }
