@@ -31,7 +31,6 @@ export class newComment extends React.Component {
   render () {
     return (
       <div className='container text-center'>
-        <h1>Write a new comment</h1>
         <CommentForm onSubmit={this.handleSubmit.bind(this)}/>
       </div>
     );
