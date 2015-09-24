@@ -12,6 +12,9 @@ $grey: #888;
   color: $grey;
 }
 
+.comment-username{
+  text-transform: capitalize;
+}
 .comment-title {
   margin-top: 0;
 }
@@ -21,7 +24,7 @@ $grey: #888;
 }
 
 .comment-gravatar {
-  @include border-radius(20%);
+  @include border-radius(10%);
 }
 
 .comment-date {
