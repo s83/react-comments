@@ -1,17 +1,31 @@
 import React from 'react';
 import CommentForm from 'components/CommentForm';
-import {connect} from 'react-redux';
-import {initialize} from 'redux-form';
+import { initialize } from 'redux-form';
+import { connect } from 'react-redux';
+import { addComment } from 'actions';
+import { FORM_COMMENT_ID } from 'constants';
 
+@connect(state => ({
+  dispatch: state
+}))
 export class newComment extends React.Component {
+
+  static propTypes = {
+    dispatch: React.PropTypes.func,
+    history: React.PropTypes.object
+  }
 
   constructor () {
     super();
   }
 
   handleSubmit(data) {
-    console.log('Submission received!', data);
-    this.props.dispatch(initialize('contact', {})); // clear form
+    // save form
+    this.props.dispatch(addComment(data));
+    // clear form inputs
+    this.props.dispatch(initialize( FORM_COMMENT_ID, {}));
+    // show comments
+    this.props.history.pushState(null, '/');
   }
 
   render () {
@@ -24,4 +38,5 @@ export class newComment extends React.Component {
   }
 }
 
-export default connect()(newComment);  // adds dispatch prop
+export default newComment;
+// export default connect()(newComment);
