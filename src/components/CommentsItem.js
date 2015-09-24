@@ -1,9 +1,13 @@
-import React       from 'react';
+import React from 'react';
 
 export class CommentsItem extends React.Component {
   static propTypes = {
     dispatch : React.PropTypes.func,
-    comment: React.PropTypes.object.required
+    username: React.PropTypes.string.required,
+    email: React.PropTypes.string.required,
+    link: React.PropTypes.string.required,
+    content: React.PropTypes.string.required,
+    date: React.PropTypes.number.required
   }
 
   constructor () {
@@ -17,11 +21,11 @@ export class CommentsItem extends React.Component {
   render () {
     return (
       <div className='container text-center'>
-        <div>{this.props.comment.content}</div>
-        <div>{this.props.comment.username}</div>
-        <div>{this.props.comment.email}</div>
-        <div>{this.props.comment.link}</div>
-        <div>{this.props.comment.creationDate}</div>
+        <div>{this.props.content}</div>
+        <div>{this.props.username}</div>
+        <div>{this.props.email}</div>
+        <div>{this.props.link}</div>
+        <div>{this.props.date}</div>
       </div>
     );
   }
