@@ -1,10 +1,11 @@
 import React from 'react';
 import {connectReduxForm} from 'redux-form';
-import { validateComment } from '../utils';
+import { validateComment } from 'utils';
+import FORM_COMMENT_ID from 'constants';
 
 // apply connectReduxForm() and include synchronous validation
 @connectReduxForm({
-  form: 'comment',
+  form: FORM_COMMENT_ID,
   fields: ['username', 'email', 'link', 'content'],
   validate: validateComment
 })

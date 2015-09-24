@@ -1,11 +1,12 @@
-import Immutable from 'immutable';
-import { createReducer } from 'utils';
+import { ADD_COMMENT } from 'constants/ActionTypes';
 
-// normally this would be imported from /constants, but in trying to keep
-// this starter kit as small as possible we'll just define it here.
-const COMMENTS_LIST = 'COMMENTS_LIST';
-const initialState = Immutable.fromJS({});
+const initialState = [];
 
-export default createReducer(initialState, {
-  [COMMENTS_LIST] : (state) => state
-});
+export default function comments(state = initialState, action) {
+  switch (action.type) {
+  case ADD_COMMENT:
+    return [...state, action.comment];
+  default:
+    return state;
+  }
+}

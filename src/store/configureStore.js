@@ -10,13 +10,6 @@ const eventBlacklist = [ BLUR, FOCUS ];
 
 let engine = createEngine('redux-storage');
 
-// immutablejs decorator
-engine = storage.decorators.immutablejs(createEngine('redux-storage'), [
-  ['immutablejs-reducer'], [
-    'plain-object-reducer', 'with-immutablejs-key'
-  ]
-]);
-
 // filter decorator
 engine = storage.decorators.filter(engine, [
     ['comments']
