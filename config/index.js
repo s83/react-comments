@@ -88,16 +88,14 @@ config.set('utils_aliases', [
   'components',
   'constants',
   'containers',
+  'components',
   'dispatchers',
-  'layouts',
   'models',
   'reducers',
-  'routes',
-  'services',
-  'stores',
+  'route',
+  'store',
   'styles',
-  'utils',
-  'views'
+  'utils'
 ].reduce((acc, x) => ((acc[x] = paths.src(x)) && acc), {}));
 
 export default config;
