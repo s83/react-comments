@@ -39,4 +39,3 @@ export class newComment extends React.Component {
 }
 
 export default newComment;
-// export default connect()(newComment);

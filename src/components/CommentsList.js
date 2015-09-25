@@ -5,8 +5,6 @@ import { ListGroup, Button, Glyphicon} from 'react-bootstrap';
 import { PATH_COMMENT_NEW } from 'constants';
 import Spaces from 'components/Spaces';
 
-console.log(PATH_COMMENT_NEW);
-
 const mapStateToProps = (state) => ({
   comments : state.comments
 });

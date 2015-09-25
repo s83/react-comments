@@ -1,13 +1,13 @@
 React Redux Starter Kit
 =======================
-[![Build Status](https://travis-ci.org/davezuko/react-redux-starter-kit.svg?branch=master)](https://travis-ci.org/davezuko/react-redux-starter-kit?branch=master)
+[![Build Status](https://travis-ci.org/davezuko/react-redux-starter-kit.svg?branch=no-server)](https://travis-ci.org/davezuko/react-redux-starter-kit?branch=no-server)
 [![dependencies](https://david-dm.org/davezuko/react-redux-starter-kit.svg)](https://david-dm.org/davezuko/react-redux-starter-kit)
 
-Starter kit to get you up and running with a bunch of awesome new technologies. This boilerplate provides server-side rendering of your routes (by way of Koa and react-router), and the sample application gives you a quick demo of Redux. All of this sits on top of a configurable, feature-rich Webpack build system that's already setup to provide unit testing, linting, hot reloading, sass imports with CSS extraction, and a whole lot more. Check out the full feature list below!
+**This is the client-only version of the starter kit**.
+
+Get up and running with a bunch of awesome new technologies with this starter kit. It provides a configurable, feature-rich Webpack build system that's already setup to provide unit testing, linting, hot reloading, sass imports with CSS extraction, and a whole lot more. Check out the full feature list below!
 
 Redux, React-Router, and React are constantly releasing new API changes. If you'd like to help keep this boilerplate up to date, please contribute or create a new issue if you think this starter kit is missing something!
-
-**Want to use this starter kit without the server?** There's a branch for that, [check it out here!](https://github.com/davezuko/react-redux-starter-kit/tree/no-server)
 
 Table of Contents
 -----------------
@@ -18,7 +18,6 @@ Table of Contents
 1. [Styles](#styles)
 1. [Testing](#testing)
 1. [Utilities](#utilities)
-1. [Server](#server)
 1. [Deployment](#deployment)
 1. [Troubleshooting](#troubleshooting)
 
@@ -37,7 +36,6 @@ Features
   * react-redux
   * redux-devtools
     * use `npm run dev:nw` to display in a separate window.
-* [Koa](https://github.com/koajs/koa)
 * [Immutable.js](https://github.com/facebook/immutable-js)
 * [Karma](https://github.com/karma-runner/karma)
   * Mocha w/ Chai and Sinon-Chai
@@ -47,8 +45,7 @@ Features
   * `react-transform-catch-errors` for more visible error reporting
   * Uses babel runtime rather than inline transformations
 * [Webpack](https://github.com/webpack/webpack)
-  * Separate server and client bundles
-    * Client bundle splits app code from vendor dependencies
+    * Splits core application code from vendor dependencies
   * webpack-dev-server
   * sass-loader with CSS extraction
   * eslint-loader
@@ -77,17 +74,8 @@ Runs all tests for the application. When run in a production build, failing test
 #### `npm run test:unit`
 Similar to `npm run test`, but only runs unit tests. In development mode this will run in watch mode and re-run individual test files when they change.
 
-#### `npm run test:server`
-Runs the small test suite in `~/server/scripts/test.js`. This will ideally be expanded in the future to instead act as an entry point similar to what exists for client-side tests.
-
-#### `npm run server:start`
-Kicks off the Koa server (defaults to `localhost:4000`).
-
-#### `npm run server:dev`
-Kicks off the Koa server with Nodemon so any file changes in ~/server will trigger a server restart.
-
 #### `npm run deploy`
-Helper script to run tests and then, on success, compile your application. Server tests that rely on the compiled server bundle will be run after compilation finishes.
+Helper script to run tests and then, on success, compile your application.
 
 ### Configuration
 
@@ -95,9 +83,6 @@ Basic project configuration can be found in `~/config/index.js`. Here you'll be 
 
 Webpack
 -------
-
-### Configuration
-There are two configuration files for the webpack compiler, client and server, located in `~/build/webpack` and named accordingly. When the webpack dev server runs, only the client compiler will be used. When webpack itself is run to compile to disk, both the client and server configurations will be used. Settings that are bundle agnostic should be defined in `~/config/index.js` and imported where needed.
 
 ### Vendor Bundle
 You can redefine which packages to treat as vendor dependencies by editing `vendor_dependencies` in `~/config/index.js`. These default to:
@@ -150,16 +135,10 @@ True when `process.env.NODE_ENV` is `production`
 #### `__DEBUG__`
 True when the compiler is run with `--debug` (any environment).
 
-#### `__CLIENT__`
-True when the client bundler is running.
-
-#### `__SERVER__`
-True when the server bundler is running.
-
 Styles
 ------
 
-All `.scss` imports will be run through the sass-loader, extracted during production builds, and ignored during server builds. If you're requiring styles from a base styles directory (useful for generic, app-wide styles) in your JS, you can make use of the `styles` alias, e.g.:
+All `.scss` imports will be run through the sass-loader and extracted during production builds. If you're requiring styles from a base styles directory (useful for generic, app-wide styles) in your JS, you can make use of the `styles` alias, e.g.:
 
 ```js
 // ~/src/components/some/nested/component/index.jsx
@@ -226,11 +205,6 @@ export default createReducer(initialState, {
   [TODO_CREATE] : (state, payload) => { ... }
 });
 ```
-
-Server
-------
-
-The application used by the server is pre-compiled, meaning the server does not load the application from source during runtime. While loading it at runtime sounds great, and a lot of examples do it, they neglect any incorporation of critical assets that aren't just JavaScript. As such, in order to support non-JS assets (read: sass), the application used by the server must be pre-bundled. The alternative would be preprocessing the server with webpack, and since any development on the server is likely to _not_ touch rendering, it makes more sense to support a more dynamic server environment.
 
 Deployment
 ----------
