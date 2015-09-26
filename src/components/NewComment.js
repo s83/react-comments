@@ -28,11 +28,16 @@ export class newComment extends React.Component {
     this.props.history.pushState(null, '/');
   }
 
+  handleReset() {
+    // clear form inputs
+    this.props.dispatch(initialize( FORM_COMMENT_ID, {}));
+  }
+
   render () {
     return (
       <div className='container'>
         <h1>New comment</h1>
-        <CommentForm onSubmit={this.handleSubmit.bind(this)}/>
+        <CommentForm onSubmit={this.handleSubmit.bind(this)} handleReset={this.handleReset.bind(this)}/>
       </div>
     );
   }
