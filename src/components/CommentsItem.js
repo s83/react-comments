@@ -54,8 +54,10 @@ export class CommentsItem extends React.Component {
   }
 
   renderUserUrlIcon () {
+    const hasPrefix = /^(https?:\/\/)/i.exec(this.props.link);
+    const prefix = hasPrefix === null ? 'http://' : '';
     return (
-      <a href={this.props.link}>
+      <a href={`${prefix}${this.props.link}`} target="_blank">
         <Glyphicon glyph="glyphicon glyphicon-link"/>
       </a>
     );
@@ -63,7 +65,7 @@ export class CommentsItem extends React.Component {
 
   renderUserIcons () {
     return (
-      <span style={{fontSize: 'xx-small'}}>
+      <span style={{fontSize: 'x-small'}}>
         <Spaces/>
         <a href={`mailto:${this.props.email}`}>
           <Glyphicon glyph="glyphicon glyphicon-envelope"/>

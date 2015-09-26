@@ -48,7 +48,7 @@ export function validateComment(data) {
   }else if (!Validator.isEmail(data.email)) {
     errors.email = 'Please enter a valid e-mail address';
   }
-  if (data.link && !Validator.isFQDN(data.link)) {
+  if (data.link && !Validator.isURL(data.link)) {
     errors.link = 'Please enter a valid url';
   }
   if (!data.content) {
