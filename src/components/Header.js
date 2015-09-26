@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Navbar, CollapsibleNav, Nav, NavItem, Glyphicon } from 'react-bootstrap';
 import { PATH_COMMENT_NEW, PATH_COMMENT_LIST } from 'constants';
+import { Link } from 'react-router';
 
 @connect(state => ({
   dispatch: state
@@ -33,8 +34,9 @@ export class Header extends React.Component {
   }
 
   render () {
+    const homeUrl = (<Link to="/"><Glyphicon glyph="leaf"/> React-comments</Link>);
     return (
-      <Navbar className="myNav" brand="React-Comments" toggleNavKey={0} staticTop inverse>
+      <Navbar className="myNav" brand={homeUrl} toggleNavKey={0} staticTop inverse>
         <CollapsibleNav eventKey={0}>
           <Nav navbar right>
             {this.getMenus()}
