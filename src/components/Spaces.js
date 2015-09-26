@@ -15,7 +15,7 @@ export default class Spaces extends React.Component {
    */
   renderSpaces () {
     const size = this.props.size;
-    return Array(1 + (size ? size : 1)).join(' ');
+    return Array(1 + (size ? size : 1)).join('\u00a0');
   }
 
   render () {
