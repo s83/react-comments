@@ -1,4 +1,4 @@
-import { ADD_COMMENT } from 'constants/ActionTypes';
+import { ADD_COMMENT } from '../constants/ActionTypes';
 
 const initialState = [];
 
