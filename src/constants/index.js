@@ -1,5 +1,5 @@
 // common
-export const ROUTE_PREFIX = '/#/';
+export const ROUTE_PREFIX = '#/';
 export const FORM_COMMENT_ID = 'comment';
 
 // routes

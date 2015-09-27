@@ -3,8 +3,8 @@ import config  from '../../config';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
-const paths   = config.get('utils_paths'),
-      globals = config.get('globals');
+const paths   = config.get('utils_paths');
+const globals = config.get('globals');
 
 const webpackConfig = {
   name    : 'client',
@@ -18,7 +18,7 @@ const webpackConfig = {
   output : {
     filename   : '[name].[hash].js',
     path       : paths.dist(),
-    publicPath : '/'
+    publicPath : ''
   },
   plugins : [
     new webpack.DefinePlugin(config.get('globals')),
@@ -76,13 +76,10 @@ const webpackConfig = {
 // ----------------------------------
 webpackConfig.entry.vendor = config.get('vendor_dependencies');
 
-// NOTE: this is a temporary workaround. I don't know how to get Karma
-// to include the vendor bundle that webpack creates, so to get around that
-// we remove the bundle splitting when webpack is used with Karma.
 const commonChunkPlugin = new webpack.optimize.CommonsChunkPlugin(
   'vendor', '[name].[hash].js'
 );
-commonChunkPlugin.__KARMA_IGNORE__ = true;
+
 webpackConfig.plugins.push(commonChunkPlugin);
 
 // ----------------------------------
@@ -101,19 +98,6 @@ if (globals.__DEV__) {
 }
 
 if (globals.__PROD__) {
-
-  // Compile CSS to its own file in production.
-  webpackConfig.module.loaders = webpackConfig.module.loaders.map(loader => {
-    if (/css/.test(loader.test)) {
-      const [first, ...rest] = loader.loaders;
-
-      loader.loader = ExtractTextPlugin.extract(first, rest.join('!'));
-      delete loader.loaders;
-    }
-
-    return loader;
-  });
-
   webpackConfig.plugins.push(
     new webpack.optimize.UglifyJsPlugin({
       compress : {

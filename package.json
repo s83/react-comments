@@ -5,14 +5,14 @@
   "main": "index.js",
   "scripts": {
     "clean": "rm -rf dist",
-    "compile": "webpack --progress --colors",
+    "compile": "npm run clean && NODE_ENV=production COMPRESS=1 webpack --progress --colors",
     "start": "npm run dev",
     "dev": "node --harmony bin/webpack-dev-server",
     "dev:nw": "npm run dev -- --nw",
     "dev:no-debug": "npm run dev -- --no_debug",
     "test": "mocha --compilers js:babel/register --recursive",
     "test:watch": "npm test -- --watch",
-    "deploy": "npm run test:unit && npm run compile"
+    "deploy": "npm run test && npm run compile"
   },
   "author": "Samuel Mansour (http://github.com/s83)",
   "license": "MIT",
