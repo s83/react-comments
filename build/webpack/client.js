@@ -1,5 +1,5 @@
 import webpack from 'webpack';
-import config  from '../config';
+import config  from '../../config';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
