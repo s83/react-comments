@@ -101,9 +101,8 @@ export class CommentsItemForm extends React.Component {
               Cancel</Button>
             <Button
               type="submit"
-              bsStyle={disabledSubmit ? 'warning  ' : 'success'}
+              bsStyle={disabledSubmit ? 'warning' : 'success'}
               bsSize="large"
-              bsStyle={disabledSubmit ? 'primary' : 'success'}
               className="pull-right"
               disabled={disabledSubmit}
               title={ disabledSubmit ? 'Please fill required fields or enter correct values' : 'Submit changes' }
