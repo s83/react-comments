@@ -5,6 +5,8 @@ react-comments
 
 built on top of the client-only version of the starter kit [react-redux-starter-kit](https://github.com/davezuko/react-redux-starter-kit).
 
+**Demo live : http://s83.github.io/react-comments/**
+
 Table of Contents
 -----------------
 1. [Requirements](#requirements)
